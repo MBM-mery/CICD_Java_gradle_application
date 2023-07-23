@@ -15,6 +15,21 @@ pipeline{
 }
             }
         }
+        stage("Gradle test") {
+            steps{
+                script{
+             if (isUnix()) {
+                 sh 'chmod +x gradlew'
+                 sh './gradlew  test'
+    } 
+             else {
+                 sh 'chmod +x gradlew'
+                 bat 'gradlew.bat test'
+    }
+}
+            }
+        }
+        
         stage("sonar quality check"){
             
             steps{
