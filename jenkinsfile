@@ -32,6 +32,7 @@ pipeline{
         
         stage("sonar quality check"){
             
+            
             steps{
                 script{
                     withSonarQubeEnv(credentialsId: 'tocken') {
