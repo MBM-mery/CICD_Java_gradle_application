@@ -5,9 +5,11 @@ pipeline{
             steps{
                 script{
              if (isUnix()) {
+                 sh 'chmod +x gradlew'
                  sh './gradlew clean build'
     } 
              else {
+                 sh 'chmod +x gradlew'
                  bat 'gradlew.bat clean build'
     }
 }
