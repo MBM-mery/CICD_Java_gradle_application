@@ -4,7 +4,7 @@ pipeline{
         VERSION = "${env.BUILD_ID}"
     }
     options {
-    buildDiscarder(logRotator(daysToKeepStr: '1', numToKeepStr: '4'))
+    buildDiscarder(logRotator(daysToKeepStr: '1', numToKeepStr: '6'))
   }
     
     stages{
