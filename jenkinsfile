@@ -6,7 +6,7 @@ pipeline{
     options {
     buildDiscarder(logRotator(daysToKeepStr: '3', numToKeepStr: '5'))
   }
-  
+   
     stages{
         stage("Gradle Build") {
             steps{
