@@ -3,6 +3,9 @@ pipeline{
     environment{
         VERSION = "${env.BUILD_ID}"
     }
+    options {
+    buildDiscarder(logRotator(daysToKeepStr: '3', numToKeepStr: '5'))
+  }
     stages{
         stage("Gradle Build") {
             steps{
@@ -69,6 +72,7 @@ pipeline{
                                 docker rmi 192.168.1.12:8083/springapp:${VERSION}
                             '''
                     }
+                    
                 }
             }
         }
