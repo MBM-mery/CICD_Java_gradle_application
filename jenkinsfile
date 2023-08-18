@@ -8,6 +8,7 @@ pipeline{
     // This is required if you want to clean before build
         skipDefaultCheckout(true)
   }
+  
 
     stages{
         stage("Gradle Build") {
@@ -79,7 +80,11 @@ pipeline{
                 }
             }
         }
-        post {
+        
+    }
+    
+}
+post {
         // Clean after build
         always {
             cleanWs(cleanWhenNotBuilt: false,
@@ -90,6 +95,5 @@ pipeline{
                                [pattern: '.propsfile', type: 'EXCLUDE']])
         }
     }
-    }
   
-  }
+  
