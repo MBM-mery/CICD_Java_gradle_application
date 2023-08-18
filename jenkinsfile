@@ -4,7 +4,7 @@ pipeline{
         VERSION = "${env.BUILD_ID}"
     }
     options {
-    buildDiscarder(logRotator(daysToKeepStr: '2', numToKeepStr: '5'))
+    buildDiscarder(logRotator(daysToKeepStr: '2', numToKeepStr: '3'))
     // This is required if you want to clean before build
         skipDefaultCheckout(true)
   }
