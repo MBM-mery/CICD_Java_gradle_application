@@ -4,7 +4,7 @@ pipeline{
         VERSION = "${env.BUILD_ID}"
     }
     options {
-    buildDiscarder(logRotator(daysToKeepStr: '2', numToKeepStr: '3'))
+    buildDiscarder(logRotator(daysToKeepStr: '1', numToKeepStr: '3'))
     // This is required if you want to clean before build
         skipDefaultCheckout(true)
   }
@@ -45,7 +45,7 @@ pipeline{
             
             steps{
                 script{
-                    withSonarQubeEnv(credentialsId: 'tocken') {
+                    withSonarQubeEnv(credentialsId: 'sonar-token') {
 
                             sh 'chmod +x gradlew'
                             sh './gradlew sonarqube'
@@ -80,8 +80,13 @@ pipeline{
                 }
             }
         }
-        
+       
     }
+    post {
+		always {
+			mail bcc: '', body: "<br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "${currentBuild.result} CI: Project name -> ${env.JOB_NAME}", to: "deekshith.snsep@gmail.com";  
+		}
+	} 
     
 }
 
