@@ -3,11 +3,12 @@ pipeline{
     environment{
         VERSION = "${env.BUILD_ID}"
     }
-    options {
+    /*options {
     buildDiscarder(logRotator(daysToKeepStr: '1', numToKeepStr: '3'))
     // This is required if you want to clean before build
         skipDefaultCheckout(true)
   }
+  */
   
 
     stages{
@@ -22,6 +23,7 @@ pipeline{
                  sh 'chmod +x gradlew'
                  bat 'gradlew.bat clean build'
     }
+    
 }
             }
         }
