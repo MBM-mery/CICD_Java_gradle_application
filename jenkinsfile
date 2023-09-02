@@ -9,8 +9,6 @@ pipeline{
         skipDefaultCheckout(true)
   }
   */
-  
-
     stages{
         stage("Gradle Build") {
             steps{
@@ -22,12 +20,7 @@ pipeline{
              else {
                  sh 'chmod +x gradlew'
                  bat 'gradlew.bat clean build'
-    }
-
-
-
-
-    
+    }  
 }
             }
         }
@@ -62,9 +55,7 @@ pipeline{
                       }
                     }
 
-                      }
-
-                
+                      }           
                 }
         }
         stage("docker build & docker push"){
