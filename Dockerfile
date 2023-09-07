@@ -1,5 +1,4 @@
 From openjdk:11 as base
-EXPOSE 8070
 WORKDIR /app
 COPY . . 
 RUN chmod +x gradlew
