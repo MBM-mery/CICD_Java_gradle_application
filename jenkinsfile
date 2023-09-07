@@ -66,8 +66,21 @@ pipeline{
                                 docker build -t 192.168.1.11:8083/springapp:${VERSION} .
                                 docker login -u admin -p $docker_password 192.168.1.11:8083 
                                 docker push  192.168.1.11:8083/springapp:${VERSION}
-                                docker rmi 192.168.1.11:8083/springapp:${VERSION}
+                                
                             '''
+                    }
+                    
+                }
+            }
+        
+        }
+        stage("deploy"){
+            steps{
+                script{
+                    withCredentials([string(credentialsId: 'docker_pass', variable: 'docker_password')]) {
+                             
+                            sh "docker run -d --name app-app -p 8070:8070 192.168.1.11:8083/springapp:${VERSION}" }
+                            
                     }
                     
                 }
@@ -81,7 +94,7 @@ pipeline{
 		}
 	} 
     
-}
+
 
 
 
